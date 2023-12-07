@@ -1,0 +1,53 @@
+﻿@using Suhkoff.Models
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Добавление задачи";
+}
+
+<form action ="/Task"method="post">
+<div class="content">
+    <div>
+       <p>Введите Название задачи:</p>
+       <input name="task_name" value="@Model.task?.task_name" autocomplete="off" data-val="true" data-val-required="The Name field is required." />
+   </div>
+    <div>
+        <p>Введите Описание:</p>
+        <textarea name="task_description">@Model.task?.task_description</textarea>
+    </div>
+    <p>Введите Статус:</p>
+    <div class="select">
+        <select name="task_status">
+            <option>@Model.task?.task_status</option>            
+            <option>Запланирована</option>
+            <option>Принята к исполнению</option>
+            <option>Выполнена</option>
+            <option>Отменена</option>
+            <option>Возвращена</option>
+        </select>
+    </div>
+
+    
+    <div class="regBtnBlock">
+    @if(Model.task?.task_id != null)
+    {
+        <input class="disp" name="id" value="@Model.task?.task_id" autocomplete="off" data-val="true" data-val-required="The Name field is required." />
+        <button calss="btn" type="submit">Обновить запись</button>
+    }
+    else
+    {
+        <p>Исполнителя:</p>
+        <div class="select">
+            <select name="user_id">
+                        @foreach (var item in Model.Users)
+                        {
+                                <option value="@item.user_id">@item.user_name</option>
+                        }
+            </select>
+        </div>
+        <div class="regBtnBlock">
+            <button class="btn" type="submit">Добавить запись</button>
+        </div>
+    }
+    </div>
+</div>
+</form>

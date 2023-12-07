@@ -1,0 +1,15 @@
+﻿@using Suhkoff.Models
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Просмотр";
+}
+
+<form action ="/Detalis"method="post">
+    <div class="detalisContent">
+        <p>Название задачи: @Model.task?.task_name</p>
+        <p>Описание: @Model.task?.task_description</p>
+        <p>Статус: @Model.task?.task_status</p>
+        <p>Исполнителя: @Model.task.users.user_name</p>
+        <p>Дата создания: @Model.task.dateTime</p>
+    </div>
+</form>

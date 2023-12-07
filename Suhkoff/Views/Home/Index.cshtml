@@ -1,0 +1,75 @@
+﻿@using Suhkoff.Models
+@model HomeViewModel
+@{
+    ViewData["Title"] = "Home Page";
+}
+<form method="get" action="/Home/Index">
+@if (!string.IsNullOrEmpty(@TempData["message"]?.ToString()))
+{
+    <div class="alert alert-danger">
+        @TempData["message"]
+    </div>
+}
+
+<div class="text-center">
+    <div class="select">
+        <select name="filter_id">
+        <option value="">Все записи</option>
+            @foreach (var item in Model.Users)
+            {
+                    <option value="@item.user_id">@item.user_name</option>
+            }
+        </select>
+    </div>
+    <div class="select-btn">
+        <button class="btn" type="submit">Фильтр</button>
+    </div>
+    <div class="table_comp">
+    <table class="table" id="sortableTable">
+        <thead>
+            <tr>
+                <th class="disabled"> Задача</th>
+                <th class="disabled"> Описание</th>
+                <th class="disabled"> Статус</th>
+                <th onclick="toggleArrow(this)"> Ответственный  <i id="arrow_1" class="arrow up"></i></th>
+                <th onclick="toggleArrow(this)"> Дата создания  <i id="arrow_2" class="arrow up"></i></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model.Tasks)
+            {
+                <tr>
+                    <th>@item.task_name</th>
+                    <th>@item.task_description</th>
+                    <th>@item.task_status</th>
+                    <th>@item.users.user_name</th>
+                    <th>@item.dateTime</th>
+                    <th><a href="home/Remove/?task_id=@item.task_id">Удалить</a>|<a href="task/Index/?task_id=@item.task_id">Изменить</a>|<a href="detalis/Index/?task_id=@item.task_id">Посмотерть</a></th>
+                </tr>
+            }
+        </tbody>
+    </table>
+    </div>
+</div>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new Tablesort(document.getElementById('sortableTable'));
+    });
+    function toggleArrow(thElement) {
+        var arrowElement = thElement.querySelector('.arrow');
+
+        if (arrowElement.classList.contains('up')) {
+            arrowElement.classList.remove('up');
+            arrowElement.classList.add('down');
+        } else {
+            arrowElement.classList.remove('down');
+            arrowElement.classList.add('up');
+        }
+    }
+</script>
+
+

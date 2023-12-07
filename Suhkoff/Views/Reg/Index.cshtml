@@ -1,0 +1,29 @@
+﻿
+@{
+    ViewData["Title"] = "Регистрация";
+}
+<form action ="/Reg"method="post">
+    <div class="Log-Reg">
+        <div>
+            Введите Имя:
+            <input name="Name" value="" autocomplete="off" data-val="true" data-val-required="Введите имя пользователя" />
+        </div>
+        <div>
+            Введите свой Email:
+            <input name="e_mail" value="" autocomplete="off" data-val="true" data-val-required="Введите Email" />
+        </div>
+        <div>
+            Введите возраст:
+            <input name="Age" value="" autocomplete="off" data-val="true" data-val-required="Введите возраст" />
+        </div>
+        <div>
+            Введите пароль:
+            <input name="Password" value="" autocomplete="off" data-val="true" data-val-required="Введите пороль" />
+        </div>
+        <div class="RegBtn">
+            <button  class="btn" type="submit"> Зарегистрироваться</button>
+        </div>
+        
+    </div>
+</form>
+

@@ -1,0 +1,21 @@
+﻿@model HomeViewModel
+@{
+    ViewData["Title"] = "Авторизация";
+}
+
+<form action="/Login/" method="post">
+
+  <div class="Log-Reg">
+        <p>E-mail: <input class="pass" name="Email" value="user@gmail.com" autocomplete="off" /></p>
+        <p>Пороль: <input name="Password" type="password" value="password" autocomplete="off" /></p>
+  
+        <div class="autorize-link">
+            <div class="autorize">
+            <button class="btn" type="submit">Войти </button>
+        </div>
+        <div class="Reglink">
+            <a class="reg-link" asp-area="" asp-controller="Reg">Регестрация</a>
+        </div>
+        </div>
+  </div>
+</form>
